@@ -1,17 +1,21 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
-  baseURL: 'https://backend-api-ashen.vercel.app',
+  baseURL: "https://backend-api-ashen.vercel.app",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers":
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+    "Access-Control-Request-Method": "GET, POST, DELETE, PUT, OPTIONS",
   },
 });
 
 export const setAuthToken = (token) => {
   if (token) {
-    instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
-    delete instance.defaults.headers.common['Authorization'];
+    delete instance.defaults.headers.common["Authorization"];
   }
 };
 
